@@ -3,4 +3,4 @@ project(TareaCorta1)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(TareaCorta1 main.cpp bigarray.cpp bigarray.h)
+add_executable(TareaCorta1 main.cpp bigarray.cpp bigarray.h QuickSort.cpp QuickSort.h)
