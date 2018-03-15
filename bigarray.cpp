@@ -3,10 +3,28 @@
 //
 
 #include "bigarray.h"
+#include "unistd.h"
+#include "stdbool.h"
+
+
+bigarray::bigarray(std::string path, std::string name) {
+    this->path = path + name;
+    for(int i = 0; i < buffer_size; i++){
+        loaded[i] = new page;
+        loaded[i]->pageNum = -1;
+    }
+}
+
+bigarray::bigarray(std::string fullpath) {
+    this->path = fullpath;
+    for(int i = 0; i < buffer_size; i++){
+        loaded[i] = new page;
+        loaded[i]->pageNum = -1;
+    }
+}
 
 void bigarray::savePage(int beg,page *page1) {
 
-    std::string path = "../IntGenerator/aBigArray.bin";
     std::ofstream file(path, std::ios::binary);
 
 
@@ -29,8 +47,6 @@ void bigarray::savePage(int beg,page *page1) {
 }
 
 void bigarray::loadPage(int beg, page *page1){
-
-    std::string path = "../IntGenerator/aBigArray.bin";
     std::ifstream file(path, std::ios::binary);
 
     if(file.is_open()){
@@ -53,16 +69,22 @@ void bigarray::loadPage(int beg, page *page1){
 int& bigarray::operator[](int index) {
     int current = index / pagesize;
     for(int i = 0; i < buffer_size; i++){
-        if(loaded[i]->pageNum == current){
+        if(loaded[i]->pageNum == -1) {
+            loaded[i]->pageNum = current;
+            loadPage(current * pagesize * 4, loaded[i]);
+            return loaded[i]->data[index - current * pagesize];
+        }else if(loaded[i]->pageNum == current){
             page *used = loaded[0];
             loaded[0] = loaded[i];
             loaded[i] = used;
             return used->data[index - current * pagesize];
-        }else{
-            loaded[buffer_size - 1]->pageNum = current;
-            loadPage(current * pagesize, loaded[buffer_size - 1]);
         }
     }
+    delete loaded[buffer_size - 1];
+    loaded[buffer_size - 1] = new page;
+    loaded[buffer_size - 1]->pageNum = current;
+    loadPage(current * pagesize * 4, loaded[buffer_size - 1]);
+    return loaded[buffer_size - 1]->data[index - current * pagesize];
 }
 
 

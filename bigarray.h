@@ -4,6 +4,8 @@
 
 #ifndef TAREACORTA1_BIGARRAY_H
 #define TAREACORTA1_BIGARRAY_H
+#define buffer_size 3
+
 
 #include <iostream>
 #include <string>
@@ -19,9 +21,9 @@ private:
     int pagesize = 100;
 
     /**
-     * Number of pages in memory
+     * Path of the file
      */
-    const int buffer_size = 3;
+    std::string path;
 
     /**
      * Pages loaded in memory
@@ -29,6 +31,17 @@ private:
     page *loaded[buffer_size];
 
 public:
+    /**
+     * Constructor
+     * @param path to the containing folder
+     * @param name of the file
+     */
+    bigarray(std::string path, std::string name);
+    /**
+     *
+     * @param fullpath path to the file
+     */
+    bigarray(std::string fullpath);
     /**
      * Escribe una página específica a disco.
      * @param beg valor del byte a partir del cual escribir
@@ -49,7 +62,6 @@ public:
      * @return value located at index
      */
     int &operator[](int index);
-
 };
 
 
