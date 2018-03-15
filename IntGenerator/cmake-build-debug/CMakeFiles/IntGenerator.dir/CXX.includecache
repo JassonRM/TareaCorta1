@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Jai/Dropbox/Datos II/TareaCorta1/IntGenerator/main.cpp
+iostream
+-
+fstream
+-
+ostream
+-
+

@@ -8,7 +8,7 @@
 
 class bigarray {
     int pagesize = 100;
-    
+
 };
 
 
