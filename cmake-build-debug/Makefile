@@ -123,6 +123,33 @@ TareaCorta1/fast:
 	$(MAKE) -f CMakeFiles/TareaCorta1.dir/build.make CMakeFiles/TareaCorta1.dir/build
 .PHONY : TareaCorta1/fast
 
+QuickSort.o: QuickSort.cpp.o
+
+.PHONY : QuickSort.o
+
+# target to build an object file
+QuickSort.cpp.o:
+	$(MAKE) -f CMakeFiles/TareaCorta1.dir/build.make CMakeFiles/TareaCorta1.dir/QuickSort.cpp.o
+.PHONY : QuickSort.cpp.o
+
+QuickSort.i: QuickSort.cpp.i
+
+.PHONY : QuickSort.i
+
+# target to preprocess a source file
+QuickSort.cpp.i:
+	$(MAKE) -f CMakeFiles/TareaCorta1.dir/build.make CMakeFiles/TareaCorta1.dir/QuickSort.cpp.i
+.PHONY : QuickSort.cpp.i
+
+QuickSort.s: QuickSort.cpp.s
+
+.PHONY : QuickSort.s
+
+# target to generate assembly for a file
+QuickSort.cpp.s:
+	$(MAKE) -f CMakeFiles/TareaCorta1.dir/build.make CMakeFiles/TareaCorta1.dir/QuickSort.cpp.s
+.PHONY : QuickSort.cpp.s
+
 bigarray.o: bigarray.cpp.o
 
 .PHONY : bigarray.o
@@ -186,6 +213,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... TareaCorta1"
+	@echo "... QuickSort.o"
+	@echo "... QuickSort.i"
+	@echo "... QuickSort.s"
 	@echo "... bigarray.o"
 	@echo "... bigarray.i"
 	@echo "... bigarray.s"

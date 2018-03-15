@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/Users/Jai/Dropbox/Datos II/TareaCorta1/QuickSort.cpp" "/Users/Jai/Dropbox/Datos II/TareaCorta1/cmake-build-debug/CMakeFiles/TareaCorta1.dir/QuickSort.cpp.o"
   "/Users/Jai/Dropbox/Datos II/TareaCorta1/bigarray.cpp" "/Users/Jai/Dropbox/Datos II/TareaCorta1/cmake-build-debug/CMakeFiles/TareaCorta1.dir/bigarray.cpp.o"
   "/Users/Jai/Dropbox/Datos II/TareaCorta1/main.cpp" "/Users/Jai/Dropbox/Datos II/TareaCorta1/cmake-build-debug/CMakeFiles/TareaCorta1.dir/main.cpp.o"
   )

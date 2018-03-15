@@ -11,6 +11,6 @@ iostream
 -
 fstream
 -
-ostream
--
+stdlib.h
+/Users/Jai/Dropbox/Datos II/TareaCorta1/IntGenerator/stdlib.h
 

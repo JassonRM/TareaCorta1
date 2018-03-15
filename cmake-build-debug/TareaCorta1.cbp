@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/Jai/Dropbox/Datos II/TareaCorta1/QuickSort.cpp">
+			<Option target="TareaCorta1"/>
+		</Unit>
+		<Unit filename="/Users/Jai/Dropbox/Datos II/TareaCorta1/QuickSort.h">
+			<Option target="TareaCorta1"/>
+		</Unit>
 		<Unit filename="/Users/Jai/Dropbox/Datos II/TareaCorta1/bigarray.cpp">
 			<Option target="TareaCorta1"/>
 		</Unit>

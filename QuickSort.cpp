@@ -4,6 +4,7 @@
 
 #include "QuickSort.h"
 #include <iostream>
+#include "bigarray.h"
 
 void swap(int low, int high, bigarray array){
     int swapValue = array[low];
