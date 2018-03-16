@@ -18,7 +18,7 @@ private:
     /**
      * Number of Int per page
      */
-    int pagesize = 100;
+    int pagesize = pageSize;
 
     /**
      * Path of the file
