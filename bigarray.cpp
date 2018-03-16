@@ -69,22 +69,32 @@ void bigarray::loadPage(int beg, page *page1){
 
 int& bigarray::operator[](int index) {
     int current = index / pagesize;
-    for(int i = 0; i < buffer_size; i++){
-        if(loaded[i]->pageNum == -1) {
+    for(int i = 0; i < buffer_size; i++) {
+        if(loaded[i]->pageNum == -1){
             loaded[i]->pageNum = current;
             loadPage(current * pagesize * 4, loaded[i]);
-            return loaded[i]->data[index - current * pagesize];
-        }else if(loaded[i]->pageNum == current){
-            page *used = loaded[0];
-            loaded[0] = loaded[i];
-            loaded[i] = used;
-            return loaded[0]->data[index - current * pagesize];
+            page *loadedPage = loaded[i];
+            for(int s = i; s > 0; s--){
+                loaded[s] = loaded[s-1];
+            }
+            loaded[0] = loadedPage;
+            return loadedPage->data[index - current * pagesize];
+        } else if (loaded[i]->pageNum == current) {
+            page *used = loaded[i];
+            for (int s = i; s > 0; s--) {
+                loaded[s] = loaded[s - 1];
+            }
+            loaded[0] = used;
+            return used->data[index - current * pagesize];
         }
     }
-    savePage(loaded[buffer_size - 1]->pageNum*4*pagesize,loaded[buffer_size - 1]);
-    delete loaded[buffer_size - 1];
-    loaded[buffer_size - 1] = new page;
-    loaded[buffer_size - 1]->pageNum = current;
-    loadPage(current * pagesize * 4, loaded[buffer_size - 1]);
-    return loaded[buffer_size - 1]->data[index - current * pagesize];
+    page *replaced = loaded[buffer_size - 1];
+    savePage(replaced->pageNum * pagesize * 4, replaced);
+    for(int s = buffer_size - 1; s > 0; s--){
+        loaded[s] = loaded[s-1];
+    }
+    loaded[0] = replaced;
+    loaded[0]->pageNum = current;
+    loadPage(current * pagesize * 4, loaded[0]);
+    return loaded[0]->data[index - current * pagesize];
 }

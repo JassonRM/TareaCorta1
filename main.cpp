@@ -1,16 +1,34 @@
 #include <iostream>
 
 #include "bigarray.h"
+#include "QuickSort.h"
 
 int main() {
-    bigarray *myarray = new bigarray("../IntGenerator/counterBigArray.bin");
-    std::cout<< (*myarray)[124] << std::endl;
-    std::cout<< (*myarray)[999] << std::endl;
-    std::cout<< (*myarray)[477] << std::endl;
-    std::cout<< (*myarray)[1001] << std::endl;
-    std::cout<< (*myarray)[342] << std::endl;
-    std::cout<< (*myarray)[732] << std::endl;
-    std::cout<< (*myarray)[643] << std::endl;
-    std::cout<< (*myarray)[1] << std::endl;
+    std::ofstream myfile;
+    int arraySize = 1000;
+    myfile.open("aBigArray.bin", std::ios::binary);
+    if(myfile.is_open()){
+        for(int i = 0; i < arraySize; i++) {
+            int x = rand() % 500;
+            myfile.write(reinterpret_cast<char *>(&x), sizeof(x));
+
+        }
+        myfile.close();
+
+    }else{
+        std::cout<<"Error al crear el archivo"<<std::endl;
+    }
+
+    bigarray *myarray = new bigarray("aBigArray.bin");
+
+    printArray(*myarray,999);
+
+    std::cout << "\n" <<std::endl;
+
+
+    quickSort(*myarray,0,999);
+
+    printArray(*myarray,999);
+
     return 0;
 }

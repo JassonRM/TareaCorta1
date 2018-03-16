@@ -7,8 +7,11 @@ int main() {
     int arraySize = 1000;
     myfile.open("aBigArray.bin", std::ios::binary);
     if(myfile.is_open()){
-        for(int i = 0; i < arraySize; i++) {
-            int x = rand();
+        for(int i = 0; i < arraySize; i = i + 12) {
+            int x = i + 3;
+            myfile.write(reinterpret_cast<char *>(&x), sizeof(x));
+
+            x = i + -24;
             myfile.write(reinterpret_cast<char *>(&x), sizeof(x));
         }
         myfile.close();
