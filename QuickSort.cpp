@@ -6,41 +6,30 @@
 #include <iostream>
 #include "bigarray.h"
 
-void swap(int low, int high, bigarray array){
-    int swapValue = array[low];
-    array[low] = array[high];
-    array[high] = swapValue;
+void swap(int* low, int* high){
+    int swapValue = *low;
+    *low = *high;
+    *high = swapValue;
 }
 
+void quickSort(bigarray array, int low, int high){
+    if (low < high) {
+        int pivot = array[high];
+        int i = (low - 1);
 
-void quickSort(bigarray array, int low,int high){
-
-    if (high <= low){return;}
-    int i = low;
-    int j = high;
-    int middle = (high+low)/2;
-    int pivot = array[middle];
-
-    while (i<j){
-
-        if (array[i] >= pivot) {
+        for (int j = low; j <= high- 1; j++) {
             if (array[j] <= pivot) {
-                swap(i,j,array);
-                if (i == middle)
-                    middle = j;
-                else if (j == middle)
-                    middle = i;
-            } else { j--;}
+                i++;
+                swap(&array[i], &array[j]);
+            }
+        }
+        swap(&array[i + 1], &array[high]);
 
-        }else{i++;}
-
+        quickSort(array, low, i);
+        quickSort(array, i +2, high);
     }
-    quickSort(array,low,middle);
-    quickSort(array,middle+1,high);
-
 }
-
-void printArray(bigarray array,int size){
+void printArray(bigarray array, int size){
     for (int i = 0; i < size; i++){
         std::cout << array[i] << "\t";
     }

@@ -25,17 +25,17 @@ bigarray::bigarray(std::string fullpath) {
 
 void bigarray::savePage(int beg,page *page1) {
 
-    std::ofstream file(path, std::ios::binary);
+    std::fstream file(path, std::ios::binary | std::ios::out| std::ios::in);
 
 
     if(file.is_open()){
 
-        file.seekp(beg);//tengo que revisar si el seek funciona con bytes
+        file.seekp(beg, std::ios::beg);//tengo que revisar si el seek funciona con bytes
         int bytes = sizeof(int);
 
         for (int i = 0; i < this->pagesize; i++){
 
-            file.write(reinterpret_cast<char *>(&(page1->data)[i]), bytes);
+            file.write(reinterpret_cast<char *>(&((page1->data)[i])), bytes);
 
         }
         file.close();
@@ -51,13 +51,14 @@ void bigarray::loadPage(int beg, page *page1){
 
     if(file.is_open()){
 
-        file.seekg(beg);//tengo que revisar si el seek funciona con bytes
+
+        file.seekg(beg, std::ios::beg);//tengo que revisar si el seek funciona con bytes
+
         int bytes = sizeof(int);
 
         for (int i = 0; i < this->pagesize; i++){
 
             file.read(reinterpret_cast<char *>(&(page1->data)[i]), bytes);
-
         }
         file.close();
 
@@ -77,29 +78,13 @@ int& bigarray::operator[](int index) {
             page *used = loaded[0];
             loaded[0] = loaded[i];
             loaded[i] = used;
-            return used->data[index - current * pagesize];
+            return loaded[0]->data[index - current * pagesize];
         }
     }
+    savePage(loaded[buffer_size - 1]->pageNum*4*pagesize,loaded[buffer_size - 1]);
     delete loaded[buffer_size - 1];
     loaded[buffer_size - 1] = new page;
     loaded[buffer_size - 1]->pageNum = current;
     loadPage(current * pagesize * 4, loaded[buffer_size - 1]);
     return loaded[buffer_size - 1]->data[index - current * pagesize];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
