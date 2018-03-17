@@ -5,11 +5,11 @@
 
 int main() {
     std::ofstream myfile;
-    int arraySize = 1000;
+    int arraySize = 10000;
     myfile.open("aBigArray.bin", std::ios::binary);
     if(myfile.is_open()){
         for(int i = 0; i < arraySize; i++) {
-            int x = rand() % 500;
+            int x = rand() % 10000;
             myfile.write(reinterpret_cast<char *>(&x), sizeof(x));
 
         }
@@ -21,14 +21,14 @@ int main() {
 
     bigarray *myarray = new bigarray("aBigArray.bin");
 
-    printArray(*myarray,999);
+    printArray(*myarray,9999);
 
     std::cout << "\n" <<std::endl;
 
 
-    quickSort(*myarray,0,999);
+    quickSort(*myarray,0,9999);
 
-    printArray(*myarray,999);
+    printArray(*myarray,9999);
 
     return 0;
 }
