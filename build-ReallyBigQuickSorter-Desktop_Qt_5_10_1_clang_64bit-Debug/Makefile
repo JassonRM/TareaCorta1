@@ -696,7 +696,8 @@ mainwindow.o: ../ReallyBigQuickSorter/mainwindow.cpp ../ReallyBigQuickSorter/mai
 		../ReallyBigQuickSorter/page.h \
 		ui_mainwindow.h \
 		/Applications/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
-		/Applications/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h
+		/Applications/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../ReallyBigQuickSorter/QuickSort.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ReallyBigQuickSorter/mainwindow.cpp
 
 bigarray.o: ../ReallyBigQuickSorter/bigarray.cpp ../ReallyBigQuickSorter/bigarray.h \

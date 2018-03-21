@@ -6,6 +6,9 @@
 #define TAREACORTA1_PAGE_H
 #define page_size 100
 
+/**
+ * @brief The page struct loaded in memory
+ */
 struct page{
 
     int pageNum;
