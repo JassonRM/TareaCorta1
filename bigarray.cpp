@@ -98,3 +98,9 @@ int& bigarray::operator[](int index) {
     loadPage(current * pagesize * 4, loaded[0]);
     return loaded[0]->data[index - current * pagesize];
 }
+
+void bigarray::save() {
+    for(int i = 0; i < buffer_size; i++){
+        savePage(loaded[i]->pageNum * pagesize * 4, loaded[i]);
+    }
+}

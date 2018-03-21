@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 
 #include "bigarray.h"
 #include "QuickSort.h"
@@ -20,6 +21,8 @@ int main() {
     }
 
     bigarray *myarray = new bigarray("aBigArray.bin");
+
+    std::atexit(myarray->save);
 
     printArray(*myarray,9999);
 

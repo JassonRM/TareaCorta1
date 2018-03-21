@@ -4,11 +4,11 @@
 
 int main() {
     std::ofstream myfile;
-    int arraySize = 1000;
-    myfile.open("aBigArray.bin", std::ios::binary);
+    int arraySize = 1000000;
+    myfile.open("aBigArray1000000.bin", std::ios::binary);
     if(myfile.is_open()){
-        for(int i = 0; i < arraySize; i = i + 12) {
-            int x = i + 3;
+        for(int i = 0; i < arraySize; i++) {
+            int x = rand() % arraySize;
             myfile.write(reinterpret_cast<char *>(&x), sizeof(x));
 
             x = i + -24;

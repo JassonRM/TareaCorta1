@@ -62,6 +62,11 @@ public:
      * @return value located at index
      */
     int &operator[](int index);
+
+    /**
+     * Save the array loaded in memory
+     */
+    void save();
 };
 
 
