@@ -123,7 +123,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "QuickSort", nullptr));
         browseBtn->setText(QApplication::translate("MainWindow", "Browse", nullptr));
         loadBtn->setText(QApplication::translate("MainWindow", "Load file", nullptr));
         sizeInput->setPlaceholderText(QApplication::translate("MainWindow", "Array size", nullptr));

@@ -35,12 +35,16 @@ void MainWindow::loadFile(){
 }
 
 void MainWindow::sort(){
-    quickSort(*openedArray, 0, ui->sizeInput->text().toInt());
+    if(openedArray != nullptr)
+        quickSort(*openedArray, 0, ui->sizeInput->text().toInt());
 }
 
 void MainWindow::print(){
-    int size = ui->sizeInput->text().toInt();
-    for (int i = 0; i < size; i++){
-        ui->arrayOutput->append(QString::number(openedArray->operator [](i)));
+    ui->arrayOutput->clear();
+    if(openedArray != nullptr){
+        int size = ui->sizeInput->text().toInt();
+        for (int i = 0; i < size; i++){
+            ui->arrayOutput->append(QString::number(openedArray->operator [](i)));
+        }
     }
 }
